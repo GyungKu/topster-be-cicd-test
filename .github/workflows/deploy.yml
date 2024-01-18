@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -36,11 +33,10 @@ jobs:
 
       # Docker 이미지 빌드
       - run: docker build -t gyungku/topster-backend -f Dockerfile . # Docerfile로 이미지 생성
-      - run: docker build -t gyungku/topster-redis -f Dockerfile ./redis
-      - run: docker build -t gyungku/topster-nginx -f Dockerfile ./nginx
-      - run: docker build -t gyungku/topster-mysql -f Dockerfile ./mysql
+      - run: docker build -t gyungku/topster-redis -f ./redis/Dockerfile .
+      - run: docker build -t gyungku/topster-nginx -f ./nginx/ Dockerfile .
+      - run: docker build -t gyungku/topster-mysql -f ./mysql/Dockerfile .
 
-      # docker hub에 push
       - run: docker push gyungku/topster-backend
       - run: docker push gyungku/topster-redis
       - run: docker push gyungku/topster-nginx
