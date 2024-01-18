@@ -58,3 +58,10 @@ jobs:
           region: ap-northeast-2 # 지역, 위의 지역을 넣자
           version_label: ${{ github.sha }}-${{ github.run_number }}
           deployment_package: deploy.zip
+
+      # EB에서 도커허브에 push 된 것을 pull 당기게 설정 (업데이트가 빈번하게 되면 좋지 않음, Docker Hub웹훅, AWS lamda사용 하는 것도 고려)
+      - name: Update EB Environment
+        uses: aws-actions/aws-cli@master
+        with:
+          script: |
+            aws elasticbeanstalk update-environment --application-name topster --environment-name Topster-env --version-label ${{ github.sha }}-${{ github.run_number }}
