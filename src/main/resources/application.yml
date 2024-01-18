@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:${DB_PORT}/${DB_DATABASE_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+jwt:
+  secret:
+    key: ${JWT_SECRET_KEY}
+
+oauth2:
+  google:
+    client-id: ${GOOGLE_ID}
+    client-secret: ${GOOGLE_PASSWORD}
+    redirect-uri: http://localhost:8080/api/v1/users/google
+    token-uri: https://oauth2.googleapis.com/token
+    resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
+
+mail:
+  id: ${MAIL_ID}
+  password: ${MAIL_PASSWORD}
+
+logging:
+  file:
+    name: logs/mylog.log

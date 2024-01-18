@@ -1,0 +1,38 @@
+version: "3"
+services:
+  frontend:
+    image: gyungku/topster-front
+
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    environment:
+      - SPRING_PROFILES_ACTIVE=spring
+      - MYSQL_HOST=$MYSQL_HOST
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_PORT=$MYSQL_PORT
+    depends_on:
+      - redis
+      - mysql
+    env_file:
+      - .env
+
+  redis:
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    container_name: redis
