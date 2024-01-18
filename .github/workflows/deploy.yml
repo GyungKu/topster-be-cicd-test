@@ -31,9 +31,20 @@ jobs:
         with:
           arguments: build
 
+      # Docker 로그인
       - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # Docker 이미지 빌드
       - run: docker build -t gyungku/topster-backend -f Dockerfile . # Docerfile로 이미지 생성
-      - run: docker push gyungku/topster-backend # docker hub에 push
+      - run: docker build -t gyungku/topster-redis -f Dockerfile ./redis
+      - run: docker build -t gyungku/topster-nginx -f Dockerfile ./nginx
+      - run: docker build -t gyungku/topster-mysql -f Dockerfile ./mysql
+
+      # docker hub에 push
+      - run: docker push gyungku/topster-backend
+      - run: docker push gyungku/topster-redis
+      - run: docker push gyungku/topster-nginx
+      - run: docker push gyungku/topster-mysql
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
