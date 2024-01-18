@@ -35,13 +35,13 @@ jobs:
       - run: docker build -t gyungku/topster-backend -f Dockerfile . # Docerfile로 이미지 생성
       - run: docker build -t gyungku/topster-redis -f ./redis/Dockerfile .
       - run: docker build -t gyungku/topster-nginx -f ./nginx/Dockerfile .
-      - run: docker build -t gyungku/topster-mysql -f ./mysql/Dockerfile .
+#      - run: docker build -t gyungku/topster-mysql -f ./mysql/Dockerfile .
 
       # Docker Hub에 이미지 push
       - run: docker push gyungku/topster-backend
       - run: docker push gyungku/topster-redis
       - run: docker push gyungku/topster-nginx
-      - run: docker push gyungku/topster-mysql
+#      - run: docker push gyungku/topster-mysql
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
