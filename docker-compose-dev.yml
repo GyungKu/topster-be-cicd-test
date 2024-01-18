@@ -1,7 +1,7 @@
-# 먼저 front 쪽 터미널에서 docker buildx build -t gyungku/topster-front ./ 해주세요
+# 먼저 front 쪽 터미널에서 docker build -t gyungku/topster-front ./ 해주세요
 # gyungku/topster-front는 변경하셔도 됩니다. 변경 하시면 아래 image: 이름을 변경 하신 걸로 바꿔주세요
 # 그다음 docker-compose -f docker-compose-dev.yml up 또는 docker-compose -f docker-compose-dev.yml up --build 를 해주세요
-# 그럼 개발환경을 docker에서 실행하는 게 가능해집니다.
+# 그럼 로컬환경에서 docker로 서버를 띄우는 게 가능해집니다.
 # 접속은 localhost 또는 localhost:80으로 접속하시면 됩니다.
 # mysql 포트를 3307로 한 것은 로컬환경에서 myssql이 설치되어 있으면 포트번호 충돌 때문에 문제가 생겨서 그렇게 했습니다.
 version: "3"
