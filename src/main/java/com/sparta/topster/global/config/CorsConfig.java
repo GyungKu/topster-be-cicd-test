@@ -12,7 +12,11 @@ public class CorsConfig {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             public void addCorsMappings(CorsRegistry registry) {
-                String[] allowedOrigins = System.getenv("CORS_ORIGINS").split(",");
+                String corsOrigins = System.getenv("CORS_ORIGINS");
+                String[] allowedOrigins = new String[] {};
+                if (corsOrigins != null) {
+                    allowedOrigins = corsOrigins.split(",");
+                }
                 registry.addMapping("/**")
                     .allowedMethods("*")
                     .allowedHeaders("*")
