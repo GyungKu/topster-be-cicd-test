@@ -60,6 +60,14 @@ jobs:
           deployment_package: deploy.zip
 
       # EB에서 도커허브에 push 된 것을 pull 당기게 설정 (업데이트가 빈번하게 되면 좋지 않음, Docker Hub웹훅, AWS lamda사용 하는 것도 고려)
+      - name: Set up AWS CLI
+        uses: aws-actions/aws-cli-setup@v2
+        with:
+          version: '2.x'
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: 'us-west-2'
+
       - name: Update EB Environment
         uses: aws-actions/aws-cli@master
         with:
