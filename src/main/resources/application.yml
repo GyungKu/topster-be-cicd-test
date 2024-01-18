@@ -43,3 +43,8 @@ mail:
 logging:
   file:
     name: logs/mylog.log
+
+spotify:
+  client:
+    id: ${SPOTIFY_CLIENT_ID}
+    secret : ${SPOTIFY_CLIENT_SECRET}
