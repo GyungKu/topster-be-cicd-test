@@ -11,13 +11,12 @@ services:
 
   backend:
     image: gyungku/topster-backend
-    environment:
-      - SPRING_PROFILES_ACTIVE=spring
-#      - MYSQL_HOST=$MYSQL_HOST
-#      - MYSQL_USER=$MYSQL_USER
-#      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-#      - MYSQL_DATABASE=$MYSQL_DATABASE
-#      - MYSQL_PORT=$MYSQL_PORT
+#    environment:
+#      MYSQL_HOST: $MYSQL_HOST
+#      MYSQL_USER: $MYSQL_USER
+#      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+#      MYSQL_DATABASE: $MYSQL_DATABASE
+#      MYSQL_PORT: $MYSQL_PORT
     depends_on:
       - redis
       - mysql
