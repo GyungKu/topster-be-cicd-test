@@ -19,7 +19,7 @@ services:
 #      MYSQL_PORT: $MYSQL_PORT
     depends_on:
       - redis
-      - mysql
+#      - mysql
     env_file:
       - .env
 
