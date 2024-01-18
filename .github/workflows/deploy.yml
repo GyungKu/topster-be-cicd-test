@@ -58,21 +58,3 @@ jobs:
           region: ap-northeast-2 # 지역, 위의 지역을 넣자
           version_label: ${{ github.sha }}-${{ github.run_number }}
           deployment_package: deploy.zip
-
-      # EB에서 도커허브에 push 된 것을 pull 당기게 설정 (업데이트가 빈번하게 되면 좋지 않음, Docker Hub웹훅, AWS lamda사용 하는 것도 고려)
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      - name: Install AWS CLI
-        run: |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-
-      - name: Update EB Environment
-        run: |
-          aws elasticbeanstalk update-environment --application-name topster --environment-name Topster-env --version-label ${{ github.sha }}-${{ github.run_number }}
