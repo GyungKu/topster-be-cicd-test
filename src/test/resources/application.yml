@@ -31,10 +31,6 @@ mail:
   id: test@test.test
   password: testMailPassword
 
-logging:
-  file:
-    name: logs/mylog.log
-
 spotify:
   client:
     id: test
